@@ -1,0 +1,35 @@
+processes:
+  - name: loop1
+    command: |
+      for i in {1..5}
+      do
+        sleep 1
+        echo "Loop1 $i"
+      done
+    blocking: true
+  - name: loop3
+    command: |
+      for i in {1..5}
+      do
+        sleep 1
+        echo "Loop3 $i"
+      done
+
+monitors:
+  - process: loop1
+    triggers:
+      logs:
+        includes_string: Loop1 5
+    actions:
+      - loop2
+
+actions:
+  - name: loop2
+    type: shell
+    command: |
+      for i in {1..3}
+      do
+        sleep 1
+        echo "Loop2 $i"
+      done
+      exit

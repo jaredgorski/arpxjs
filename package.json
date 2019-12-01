@@ -1,15 +1,22 @@
 {
   "name": "arpxjs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
+  "directories": {
+    "lib": "./lib"
+  },
+  "files": [
+    "lib/**",
+    "native/index.node"
+  ],
+
   "dependencies": {
     "neon-cli": "^0.3.3"
   },
   "scripts": {
-    "build": "neon build --release",
-    "dev": "node lib/index.js"
+    "build": "neon build --release"
   },
-  "author": "",
+  "author": "Jared Gorski",
   "license": "MIT"
 }
