@@ -1,0 +1,16 @@
+[package]
+name = "arpxjs"
+version = "0.0.0"
+build = "build.rs"
+edition = "2018"
+
+[lib]
+name = "arpxjs"
+crate-type = ["cdylib"]
+
+[build-dependencies]
+neon-build = "0.3.3"
+
+[dependencies]
+arpx = "0.0.2"
+neon = "0.3.3"
