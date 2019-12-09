@@ -29,7 +29,7 @@ fn arpxjs(mut cx: FunctionContext) -> JsResult<JsString> {
         None => panic!("!processes"),
     };
 
-    arpx::commands::run::run(&profile.unwrap(), processes);
+    arpx::commands::run::run(&profile.unwrap(), processes, false);
     Ok(cx.string("OK"))
 }
 

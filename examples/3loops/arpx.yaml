@@ -17,9 +17,7 @@ processes:
 
 monitors:
   - process: loop1
-    triggers:
-      logs:
-        includes_string: Loop1 5
+    condition: '[[ "$LOG_LINE" =~ "Loop1 5" ]]'
     actions:
       - loop2
 

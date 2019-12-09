@@ -9,6 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "arpxjs": "0.0.1"
+    "arpxjs": "0.0.3"
   }
 }
