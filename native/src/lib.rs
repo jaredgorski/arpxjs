@@ -1,6 +1,6 @@
+use arpx;
 use neon::prelude::*;
 use neon::register_module;
-use arpx;
 
 fn arpxjs(mut cx: FunctionContext) -> JsResult<JsString> {
 
@@ -18,14 +18,9 @@ fn arpxjs(mut cx: FunctionContext) -> JsResult<JsString> {
             let processes_vec: Vec<Handle<JsValue>> = processes_arr.to_vec(&mut cx)?;
             processes_vec
                 .iter()
-                .map(|js_value| {
-                    js_value
-                        .downcast::<JsString>()
-                        .unwrap()
-                        .value()
-                })
+                .map(|js_value| js_value.downcast::<JsString>().unwrap().value())
                 .collect()
-        },
+        }
         None => panic!("!processes"),
     };
 
