@@ -1,127 +1,110 @@
 language: rust
 rust:
-    - 1.38.0
-
+- 1.38.0
 services:
-    - docker
-
-# all unlabeled jobs run at test. Only if all "test" jobs finish, will the publish job run
+- docker
 stages:
-    - test
-    - publish
-
+- test
+- publish
 jobs:
-    include:
-        # PRs, pushes to master, and tags build on all target arches
-        # if this is release tag, the resultant binary will be uploaded to github
-        - name: "Linux - Node 8 - glibc"
-          os: linux
-          env:
-              - TRAVIS_NODE_VERSION="8"
-              - SKIP_DEPLOY=0
-          if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
-        - name: "Linux - Node 8 - musl"
-          os: linux
-          env:
-              - SKIP_DEPLOY=0
-              - IMAGE=8-alpine
-              - INDOCKER="docker exec target"
-          if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
-        - name: "OSX - Node 8"
-          os: osx
-          env:
-              - TRAVIS_NODE_VERSION="8"
-              - SKIP_DEPLOY=0
-          if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
-        - name: "Linux - Node 10 - glibc"
-          os: linux
-          env:
-              - TRAVIS_NODE_VERSION="10"
-              - SKIP_DEPLOY=0
-          if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
-        - name: "Linux - Node 10 - musl"
-          os: linux
-          env:
-              - SKIP_DEPLOY=0
-              - IMAGE=10-alpine
-              - INDOCKER="docker exec target"
-          if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
-        - name: "OSX - Node 10"
-          os: osx
-          env:
-              - TRAVIS_NODE_VERSION="10"
-              - SKIP_DEPLOY=0
-          if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
-        - name: "Linux - Node 12 - glibc"
-          os: linux
-          env:
-              - TRAVIS_NODE_VERSION="12"
-              - SKIP_DEPLOY=0
-          if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
-        - name: "Linux - Node 12 - musl"
-          os: linux
-          env:
-              - SKIP_DEPLOY=0
-              - IMAGE=12-alpine
-              - INDOCKER="docker exec target"
-          if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
-        - name: "OSX - Node 12"
-          os: osx
-          env:
-              - TRAVIS_NODE_VERSION="12"
-              - SKIP_DEPLOY=0
-          if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
-
-        # Publish to npm only on release tag
-        - stage: publish
-          name: "Publish to npm"
-          os: linux
-          env:
-              - TRAVIS_NODE_VERSION="8"
-              - SKIP_DEPLOY=1
-
-              # NPM_TOKEN
-              - secure: oI13TqF+IdOLQN6ebfibWux1p6Tsf6UXOpPWzxv9Jlte187I9Q4NekSb9unzX349BBUU8Gk2SeMujYnemOj0nPMUmGfT1iQhQRdzI7uhkUFS6kw6mt3bJ+7ynM46OwPKfeseVe8o5cZ3r+MqEIxFxtkCbPlspp9blmL4peoUcEF3gAx98yKG/TsPtdOEAwlRFR681wobdYPheMh8T6vjQMIORMG6O4Q7swkrGBztF0WsH+QeZhcGPjuH/SOKlULfQpMBqP8LSiTBvqfbBT2vgUqxeWlZUDkW/Jo8SmQKASgMReyc9whpNoiFQnGV/qKZO73hXSvPV6Y9RUqCTTdLxYIEOzsrCYiR5/IbGTCzRmvFyhGrfIR2zLuzaz9af6d4FqZFeZTiKqQwEVMew7+SjySMYIDuPEmivOJd6ENMzb2X01b87ymWf0lfOw/P1O3Pz6DgaZtutyPRVBHNBBushfKKlZ+KsRPll796TEm9VDT6wr8gqQmIH+qzHcmmkxztOMDJO315sWto5xMzAtadQPWJpJUMaop8Vho3L8EWnq3QY0LEhATZVlD1DI8b5ccjcG9C2aDlG5m89XKv+ghOeFE0E4h0DyYwCpA1ZAbTipk+JCBHFTk6dbIt1gW4lWNclSByJyJoAeQK127Eozv0n85669IwE41kfX0nGVO3ik8=
-          if: tag =~ /^\d+\.\d+\.\d+/
-          before_install:
-              - npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          script:
-              - echo "Deploying to NPM..."
-              - node publish.js --publish
-
+  include:
+  - name: Linux - Node 8 - glibc
+    os: linux
+    env:
+    - TRAVIS_NODE_VERSION="8"
+    - SKIP_DEPLOY=0
+    if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
+  - name: Linux - Node 8 - musl
+    os: linux
+    env:
+    - SKIP_DEPLOY=0
+    - IMAGE=8-alpine
+    - INDOCKER="docker exec target"
+    if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
+  - name: OSX - Node 8
+    os: osx
+    env:
+    - TRAVIS_NODE_VERSION="8"
+    - SKIP_DEPLOY=0
+    if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
+  - name: Linux - Node 10 - glibc
+    os: linux
+    env:
+    - TRAVIS_NODE_VERSION="10"
+    - SKIP_DEPLOY=0
+    if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
+  - name: Linux - Node 10 - musl
+    os: linux
+    env:
+    - SKIP_DEPLOY=0
+    - IMAGE=10-alpine
+    - INDOCKER="docker exec target"
+    if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
+  - name: OSX - Node 10
+    os: osx
+    env:
+    - TRAVIS_NODE_VERSION="10"
+    - SKIP_DEPLOY=0
+    if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
+  - name: Linux - Node 12 - glibc
+    os: linux
+    env:
+    - TRAVIS_NODE_VERSION="12"
+    - SKIP_DEPLOY=0
+    if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
+  - name: Linux - Node 12 - musl
+    os: linux
+    env:
+    - SKIP_DEPLOY=0
+    - IMAGE=12-alpine
+    - INDOCKER="docker exec target"
+    if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
+  - name: OSX - Node 12
+    os: osx
+    env:
+    - TRAVIS_NODE_VERSION="12"
+    - SKIP_DEPLOY=0
+    if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
+  - stage: publish
+    name: Publish to npm
+    os: linux
+    env:
+    - TRAVIS_NODE_VERSION="8"
+    - SKIP_DEPLOY=1
+    - secure: oI13TqF+IdOLQN6ebfibWux1p6Tsf6UXOpPWzxv9Jlte187I9Q4NekSb9unzX349BBUU8Gk2SeMujYnemOj0nPMUmGfT1iQhQRdzI7uhkUFS6kw6mt3bJ+7ynM46OwPKfeseVe8o5cZ3r+MqEIxFxtkCbPlspp9blmL4peoUcEF3gAx98yKG/TsPtdOEAwlRFR681wobdYPheMh8T6vjQMIORMG6O4Q7swkrGBztF0WsH+QeZhcGPjuH/SOKlULfQpMBqP8LSiTBvqfbBT2vgUqxeWlZUDkW/Jo8SmQKASgMReyc9whpNoiFQnGV/qKZO73hXSvPV6Y9RUqCTTdLxYIEOzsrCYiR5/IbGTCzRmvFyhGrfIR2zLuzaz9af6d4FqZFeZTiKqQwEVMew7+SjySMYIDuPEmivOJd6ENMzb2X01b87ymWf0lfOw/P1O3Pz6DgaZtutyPRVBHNBBushfKKlZ+KsRPll796TEm9VDT6wr8gqQmIH+qzHcmmkxztOMDJO315sWto5xMzAtadQPWJpJUMaop8Vho3L8EWnq3QY0LEhATZVlD1DI8b5ccjcG9C2aDlG5m89XKv+ghOeFE0E4h0DyYwCpA1ZAbTipk+JCBHFTk6dbIt1gW4lWNclSByJyJoAeQK127Eozv0n85669IwE41kfX0nGVO3ik8=
+    if: tag =~ /^\d+\.\d+\.\d+/
+    before_install:
+    - npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+    script:
+    - echo "Deploying to NPM..."
+    - node publish.js --publish
 before_install:
-    - ./.travis_scripts/maybe-start-docker.sh
-
+- "./.travis_scripts/maybe-start-docker.sh"
 install:
-    - source .travis_scripts/maybe-install-node.sh
-
+- source .travis_scripts/maybe-install-node.sh
 notifications:
-    email:
-        on_success: change
-        on_failure: always
+  email:
+    on_success: change
+    on_failure: always
 cache:
-    yarn: true
-    cargo: true
-    directories:
-        - node_modules
+  yarn: true
+  cargo: true
+  directories:
+  - node_modules
 before_script:
-    - ${INDOCKER} rustup component add rustfmt-preview
-    - ${INDOCKER} yarn --ignore-scripts
+- "${INDOCKER} rustup component add rustfmt-preview"
+- "${INDOCKER} yarn --ignore-scripts"
 script:
-    - ${INDOCKER} /bin/sh -c "cd native/ && cargo fmt -- --check"
-    - ${INDOCKER} node publish.js
-
-# deploy the node-pre-gyp binary to github releases so it's there when the npm package is installed
+- ${INDOCKER} /bin/sh -c "cd native/ && cargo fmt -- --check"
+- "${INDOCKER} node publish.js"
 deploy:
-    provider: releases
-    api_key:
-        secure: vTTLT9MNcSg2ZBr3Koq+FfT/ofZ7bIC5e5k+kX6OgjpYijy+wIEMvOR9HuNgOgmFTOftzXdN53j8xxm4xOYYoTV1AnUAOMfuN4sekLNEI1pGjHnC18waL5cdqmhz0sjmVehE2tcIbORGmtPivJJzNn07Ycq0p8uCcwivexE3ChhYCXIy3w0i2pHTZospbMSSgZ4szNB+hPLmMYH5h4S1DmJHTGrovwi/sxXbKNsdHuopViOngpBmHc8yEfSxAiHSXWJVPj2kwDxBo4ONhorSw7cLFB1tDC4zk8aHVFTo94CSV3rSF9kwZEIhkkWi35epFlOWw8im8QvivYCz/p8ISkr+NZlL5cmTpsgh6vdTAu3IrvMgr4NDL3tqgfvseBUJrGpi+9d1SwM1gT/Vo3E1v4pVPMpxBakiwtsUFMAnBfBELiQgLehZCb2QlAB42tOVMfNkeEZIqZpWIiywMoBZmXDn6aTNaG1LQ0DVUhtXvFEaFBLiWqhtx16f5bmiG8rCzflUL0aQdOBGoFuX1HWrSrIa336znko9+ztLLIPEXB3+lwv+XHmYmrKrtTI9smH3J+n/4KDo2ycPIt/GOb84kHcv8vxcuE6Qe1fAVKREQkX/mFNwOZCzgSrSIjJi8yr2/dNWO9hSDFKWtVc2OB6TzTGuUtcH6Mpoer3GCfBKA+U=
-    file_glob: true
-    file: bin/*.tar.gz
-    skip_cleanup: true
-
-    # publish only if we're building a tag and if the SKIP_DEPLOY is set to 0
-    on:
-        tags: true
-        condition: $SKIP_DEPLOY = 0
-    name: Version $TRAVIS_TAG
+  provider: releases
+  api_key:
+    secure: zb5yExrZJ3cHlFF1HJZ0KvIhr+I0b0WoVzn5AnIe3hF/61knhRUIOF8i0CBnR5VoCLUUIFOQmGuhAilk82ofJZpvBZKSvX8xraxZfU4AZN7fMt2D9jWy/zvI7nxxjNq2nGgblwnCjVhepL2VBY1BlN2hcdkvkUEd3CuaTAYhifOtV23QiOjwFVJmvPvnvwFcY1nl+gpK2abCoW2uIUGg39ijuhIA+W4aSt+9+6dVd9sPcVFaPS7OqmsZDEIswvstmhkYgj80FoN6Mp+aEpk0ihlfNuqhZPP57NI7wdtNPc8LtEjBJHvwAk+cArFc3KDcCxmeJuQpuBFoqig/9Y8ZcNKQmzW3MnDtEfWii+kErRK0QvQhsVRhQeG4cP3mtX/ajTA7zYPz+RJauMJRiNE2xfPWw4KivScuAJTcNYTs2N42CoaO7sp9alGn4vIu18HmfPhdlBWKB4F0p2L51cLteqQxkqA0fFRxgUePcNJezobRMAB1R88A1j/YEev2JudPBzXlkijQvmGhNdHnLq64ZcuNi4IOn5lHqX2PjKKuMBgmtVvSiEsukoTj3DkDgvyXCraFY3vzd6PxqM7b1C0Y6fcsl/oiT7ISHFONH7kPwZorIjGEJvHUrIHvK1yfOGj801v8aV7l2XQkLfeRCr+imwXwaQgk5XfE/lns3Atlnmg=
+  file_glob: true
+  file: bin/*.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
+    condition: "$SKIP_DEPLOY = 0"
+  name: Version $TRAVIS_TAG
