@@ -8,7 +8,7 @@ fn arpxjs(mut cx: FunctionContext) -> JsResult<JsString> {
         Some(arg) => {
             let pr_path: Handle<JsString> = arg.downcast::<JsString>().or_throw(&mut cx)?;
             arpx::profile::get_profile(pr_path.value())
-        },
+        }
         None => panic!("!profile"),
     };
 
