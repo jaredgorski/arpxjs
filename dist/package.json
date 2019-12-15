@@ -30,7 +30,8 @@
   ],
   "scripts": {
     "build": "neon build --release",
-    "clean": "neon clean"
+    "clean": "neon clean",
+    "install": "node-pre-gyp install"
   },
   "author": "Jared Gorski",
   "license": "MIT",
