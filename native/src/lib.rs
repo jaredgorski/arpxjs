@@ -3,7 +3,6 @@ use neon::prelude::*;
 use neon::register_module;
 
 fn arpxjs(mut cx: FunctionContext) -> JsResult<JsString> {
-
     let profile = match cx.argument_opt(0) {
         Some(arg) => {
             let pr_path: Handle<JsString> = arg.downcast::<JsString>().or_throw(&mut cx)?;
