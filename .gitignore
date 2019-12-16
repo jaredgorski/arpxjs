@@ -1,1 +1,7 @@
-native/target/**/*
+.DS_Store
+node_modules
+
+bin
+dist
+native/artifacts.json
+native/target

@@ -81,9 +81,9 @@ jobs:
     - echo "Deploying to NPM..."
     - node publish.js --publish
 before_install:
-- "./.travis_scripts/maybe-start-docker.sh"
+- "./.travis/docker-start.sh"
 install:
-- source .travis_scripts/maybe-install-node.sh
+- source .travis/node-install.sh
 notifications:
   email:
     on_success: change
@@ -105,7 +105,7 @@ deploy:
     secure: A5e47+qgH0PyFQamjQlu9MwMD5WOVIaJerhXebyv1Z8kTs9X8Ut4v2J8Na4AQGIvnTJ3INhbc1R858iIF0klCVn9sKFhswxFGqwHZySvPQRBvaGHoEjVtd8XcZ1XjApV+Pm/8/CyFOFvtJpRWIsjvioZrI9+HG9WEthe11CJHC9wv+c3QRrPhUSw0gbxf7GM8W/5ojECJHlf6hQWgFDJX0OOP2cu39/LsCxR4mpyhbQR6eTWC9JE9Qfs3jixEh+KPjycgp8GOVUI2v30p5tYB8y8nMnFVxictQFjL7LuCgcD3EO0tZVhTCRay1ar5LPfQw58Fp2ktd5Hi5o7Qmza1Jn+1LJqhvawaFLMESVtOvspuujQbybe0WSjKDrLBh8X6IB9J13YvDTHM+TTQGsF+QLMV9IsIlUNp1fJErsp8d2oc90s0TBOfe4a+ywF7KZ2pmDsG/5wfwIBcU7LWMpiDoOMDJQGUNxCPbRP8DR+xYK/yDXMjBwDmzxTOeeipfzRv5kR0rOwlDb1NxIZOLxgvC4TjrA0mu8aObx4izuk19LHoeKuoHAn1IUSiBecM6VMJ0ZcM4ZmWWvMpp1wLpdCuNAwivO/365t/+hHzWwizxQ6Xechl/FMY5pdH08Y00ig9Z2YnWyOsdqlbDkqggeymY/HPMH/5/+iBf9e0JgymeU=
   file_glob: true
   file: bin/*.tar.gz
-  skip_cleanup: true
+  cleanup: false
   on:
     tags: true
     condition: "$SKIP_DEPLOY = 0"

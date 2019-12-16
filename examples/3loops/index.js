@@ -1,5 +1,5 @@
-const arpx = require('arpxjs');
+const {arpxjs} = require('arpxjs');
 
 console.log('before');
-arpx('./arpx.yaml', ['loop1', 'loop3']);
+arpxjs('./arpx.yaml', ['loop1', 'loop3']);
 console.log('after');
