@@ -9,7 +9,6 @@
 const fs = require("fs");
 const path = require("path");
 const shell = require("shelljs");
-const pkgjson = require("./dist/package.json");
 
 shell.set("-e");
 
@@ -31,9 +30,8 @@ shell.exec("yarn run build");
 // TODO: Add testing specific to this repo
 // shell.exec("yarn test");
 shell.mkdir("./dist");
-
 shell.cp(["README.md", "package.json"], "./dist");
-
+const pkgjson = require("./dist/package.json");
 pkgjson.scripts.install = "node-pre-gyp install";
 fs.writeFileSync("./dist/package.json", JSON.stringify(pkgjson, null, 2));
 
