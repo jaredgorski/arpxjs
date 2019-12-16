@@ -65,6 +65,7 @@ jobs:
     - TRAVIS_NODE_VERSION="12"
     - SKIP_DEPLOY=0
     if: tag =~ /^\d+\.\d+\.\d+/ OR branch = master OR type = pull_request
+
   - stage: publish
     name: Publish to npm
     os: linux
@@ -73,6 +74,7 @@ jobs:
     - SKIP_DEPLOY=1
     - secure: oI13TqF+IdOLQN6ebfibWux1p6Tsf6UXOpPWzxv9Jlte187I9Q4NekSb9unzX349BBUU8Gk2SeMujYnemOj0nPMUmGfT1iQhQRdzI7uhkUFS6kw6mt3bJ+7ynM46OwPKfeseVe8o5cZ3r+MqEIxFxtkCbPlspp9blmL4peoUcEF3gAx98yKG/TsPtdOEAwlRFR681wobdYPheMh8T6vjQMIORMG6O4Q7swkrGBztF0WsH+QeZhcGPjuH/SOKlULfQpMBqP8LSiTBvqfbBT2vgUqxeWlZUDkW/Jo8SmQKASgMReyc9whpNoiFQnGV/qKZO73hXSvPV6Y9RUqCTTdLxYIEOzsrCYiR5/IbGTCzRmvFyhGrfIR2zLuzaz9af6d4FqZFeZTiKqQwEVMew7+SjySMYIDuPEmivOJd6ENMzb2X01b87ymWf0lfOw/P1O3Pz6DgaZtutyPRVBHNBBushfKKlZ+KsRPll796TEm9VDT6wr8gqQmIH+qzHcmmkxztOMDJO315sWto5xMzAtadQPWJpJUMaop8Vho3L8EWnq3QY0LEhATZVlD1DI8b5ccjcG9C2aDlG5m89XKv+ghOeFE0E4h0DyYwCpA1ZAbTipk+JCBHFTk6dbIt1gW4lWNclSByJyJoAeQK127Eozv0n85669IwE41kfX0nGVO3ik8=
     if: tag =~ /^\d+\.\d+\.\d+/
+
     before_install:
     - npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
     script:
