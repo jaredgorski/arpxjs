@@ -108,5 +108,4 @@ deploy:
   cleanup: false
   on:
     tags: true
-    condition: "$SKIP_DEPLOY = 0"
   name: Version $TRAVIS_TAG
