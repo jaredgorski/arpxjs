@@ -10,11 +10,11 @@
 Invoking the exported `arpxjs()` function, passing a filepath to a valid PROFILE, and specifying an array of PROCESSES to run from the profile will execute the given PROCESSES, according to the PROFILE, in the current runtime.
 
 ## Platforms
-|                       | Node 8 | Node 10 | Node 12 |
-| --------------------- | ------ | ------- | ------- |
-| Linux x64 - glibc     | ✓      | ✓       | ✓       |
-| Linux x64 - musl-libc | ✓      | ✓       | ✓       |
-| OSX x64               | ✓      | ✓       | ✓       |
+|                       | Node 8 | Node 10 | Node 12 | Node 14 |
+| --------------------- | ------ | ------- | ------- | ------- |
+| Linux x64 - glibc     | ✓      | ✓       | ✓       | ✗ :(    |
+| Linux x64 - musl-libc | ✓      | ✓       | ✓       | ✗ :(    |
+| OSX x64               | ✓      | ✓       | ✓       | ✗ :(    |
 
 _NOTE: Feel free to implement support for your platform and send a PR. Alternatively, open an issue requesting support._
 
