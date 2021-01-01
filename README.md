@@ -1,3 +1,5 @@
+**NOTE: This package is deprecated and archived. It will still work up till Node 12 and arpx 0.3.1, however it is now recommended to treat arpx as a system utility (install on server and invoke via commands).**
+
 # arpxjs
 ![npm](https://img.shields.io/npm/v/arpxjs?color=black)
 [![Build Status](https://travis-ci.com/jaredgorski/arpxjs.svg?branch=master)](https://travis-ci.com/jaredgorski/arpxjs)
